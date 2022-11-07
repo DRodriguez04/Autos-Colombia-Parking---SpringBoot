@@ -3,7 +3,7 @@ package co.edu.iudigital.parqueadero.parqueaderoapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,20 +19,19 @@ import co.edu.iudigital.parqueadero.parqueaderoapp.services.EstadoVehiculoServic
 @CrossOrigin("*")
 public class EstadoVehiculoController {
 
-  
-  @Autowired
-  private EstadoVehiculoService estadoVehiculoService;
-  
-  @PostMapping
-  @ResponseStatus(HttpsStatus.CREATED)
-  public void regEstVehiculo(@RequestBody EstadoVehiculo estadoVehiculo){
-    estadoVehiculoService.regEstVehiculo(estadoVehiculo);
-  }
+    @Autowired
+    private EstadoVehiculoService estadoVehiculoService;
 
-  @PutMapping("/{estado}")
-  @ResponseStatus(HttpStatus.CREATED)
-  public void actEstVehiculo(@PathVariable("estado") String estado, @RequestBody EstadoVehiculo estadoVehiculo){
-    estadoVehiculoService.updEstadoVeh(estadoVehiculo);
-  }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void regEstVehiculo(@RequestBody EstadoVehiculo estadoVehiculo) {
+        estadoVehiculoService.regEstVehiculo(estadoVehiculo);
+    }
+
+    @PutMapping("/{estado}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void actEstVehiculo(@PathVariable("estado") String estado, @RequestBody EstadoVehiculo estadoVehiculo) {
+        estadoVehiculoService.updEstadoVeh(estadoVehiculo);
+    }
 
 }
