@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,10 +30,20 @@ public class VehiculoController {
     public void creaVehiculo(@RequestBody Vehiculo vehiculo) {
         vehiculoService.registerVehiculo(vehiculo);
     }
+    
+    @GetMapping("/{id}")
+    public Optional<Vehiculo> obtenerVehiculoId(@PathVariable int id_vehiculo){
+        return vehiculoService.gVehOptional(id_vehiculo);
+    }
 
-    @GetMapping
-    public List<Vehiculo> traerVehiculo() {
-        List<Vehiculo> vList = new ArrayList<>();
+    @GetMapping("/{placa}")
+    public Optional<Vehiculo> obtVehiculoPlaca(@PathVariable String placa){
+        return vehiculoService.gVehPlaca(placa);
+    }
 
+    
+    @DeleteMapping("/{id_vehiculo}")
+     public void eliVehiculo(@PathVariable int id_vehiculo){
+        vehiculoService.delVehiculo(id_vehiculo);
     }
 }
