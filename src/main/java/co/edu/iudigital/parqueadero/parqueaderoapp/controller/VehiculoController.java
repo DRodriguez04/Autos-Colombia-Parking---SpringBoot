@@ -30,9 +30,4 @@ public class VehiculoController {
         vehiculoService.registerVehiculo(vehiculo);
     }
 
-    @GetMapping
-    public List<Vehiculo> traerVehiculo() {
-        List<Vehiculo> vList = new ArrayList<>();
-
-    }
 }
