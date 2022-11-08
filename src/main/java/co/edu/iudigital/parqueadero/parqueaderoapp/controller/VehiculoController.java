@@ -34,8 +34,7 @@ public class VehiculoController {
     @GetMapping
     public List<Vehiculo> traerVehiculo() { 
         List<Vehiculo> vList = new ArrayList<>();
-
-
+        return traerVehiculo;
     }
 
      
