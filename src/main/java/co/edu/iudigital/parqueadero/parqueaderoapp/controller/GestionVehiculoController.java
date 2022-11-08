@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -29,9 +31,27 @@ public class GestionVehiculoController {
         gestionVehiculoService.registerGestionVehiculo(gestionVehiculo);
     }
 
+    @GetMapping
     public List<GestionVehiculo> getListGestion() {
         List<GestionVehiculo> gestVehiculo = new ArrayList<>();
         return gestVehiculo;
+    }
+    
+    @GetMapping("/{id_registro}")
+    public Optional<GestionVehiculo> getGestionId(@PathVariable int id_registro){
+        return gestionVehiculoService.gOptional(id_registro);
+    }
+    
+    @PutMapping("/{fechaIngreso}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void actfechaIngresoVehiculo(@PathVariable("fechaIngreso") LocalDateTime fechaIngreso, @RequestBody GestionVehiculo gestionVehiculo) {
+        gestionVehiculoService.actfechaIngreso(gestionVehiculo);
+    }
+    
+    @PutMapping("/{fechaSalida}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void actfechaSalidaVehiculo(@PathVariable("fechaSalida") LocalDateTime fechaSalida, @RequestBody GestionVehiculo gestionVehiculo) {
+        gestionVehiculoService.actfechaSalida(gestionVehiculo);
     }
 
 }
